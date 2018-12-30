@@ -27,7 +27,7 @@ data "template_file" "usg_vpn_installer" {
   }
 }
 
-resource "null_resource" "install1" { 
+resource "null_resource" "install" { 
   provisioner "local-exec" {
     command = "cat > ./gen/usg-vpn-install.sh <<EOL\n${data.template_file.usg_vpn_installer.rendered}\nEOL"
   }
@@ -44,7 +44,7 @@ data "template_file" "usg_vpn_uninstaller" {
   }
 }
 
-resource "null_resource" "uninstall1" {
+resource "null_resource" "uninstall" {
   provisioner "local-exec" {
     command = "cat > ./gen/usg-vpn-uninstall.sh <<EOL\n${data.template_file.usg_vpn_uninstaller.rendered}\nEOL"
   }
