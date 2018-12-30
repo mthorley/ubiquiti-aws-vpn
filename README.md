@@ -1,5 +1,5 @@
 # Ubiquiti AWS VPN 
-Basic Terraform for provisioning VPN connectivity between Ubiquiti Unifi Security Gateway and AWS site to site VPN connection. Its possible this may also work for Edge routers also running EdgeOS but this has not been tested.
+Basic Terraform for provisioning VPN connectivity between [Ubiquiti Unifi Security Gateway](https://www.ubnt.com/unifi-routing/unifi-security-gateway-pro-4/] and AWS site to site VPN connection. Its possible this may also work for Edge routers also running EdgeOS but this has not been tested.
 
 ## How It Works
 Uses Terraform to 
