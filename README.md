@@ -53,3 +53,4 @@ and magic should happen.
 
 * [Align the generated shell scripts to Ubiquiti commands](https://help.ubnt.com/hc/en-us/articles/115016128008-EdgeRouter-IPsec-Route-Based-Site-to-Site-VPN-to-AWS-VPC-BGP-over-IKEv1-IPsec-) rather than AWS Vyatta config.
 * Put ALB infront of syslog EC2 instance to redundancy and consistent endpoint for syslog clients.
+* Replace template generation with Terraform provisioner for USG using an API.
