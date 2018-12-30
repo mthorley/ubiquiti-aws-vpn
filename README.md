@@ -45,7 +45,8 @@ Generate AWS API keys, create an IAM user (e.g terraform) with following AWS man
 
 ## Usage
 ```
-terraform apply
+$ terraform init
+$ terraform apply
 ```
 and magic should happen.
 
