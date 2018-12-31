@@ -14,7 +14,7 @@ resource "aws_subnet" "sn1" {
   availability_zone = "ap-southeast-2a"
 
   tags {
-    Name = "${var.env}"
+    Name = "${var.env}-private"
   }
 }
 
@@ -22,6 +22,47 @@ resource "aws_subnet" "sn2" {
   vpc_id = "${aws_vpc.usg_dev.id}"
   cidr_block = "${var.sn2_cidr}"
   availability_zone = "ap-southeast-2b"
+
+  tags {
+    Name = "${var.env}-private"
+  }
+}
+
+/*
+Public subnet to host NAT gateway
+*/
+resource "aws_subnet" "public" {
+  vpc_id = "${aws_vpc.usg_dev.id}"
+  cidr_block = "172.16.64.0/24"
+  
+  tags {
+    Name = "${var.env}-public"
+  }
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = "${aws_vpc.usg_dev.id}"
+
+  tags {
+    Name = "${var.env}"
+  }
+}
+
+resource "aws_eip" "nat" {
+  vpc = true
+  
+  depends_on = ["aws_internet_gateway.igw"]
+
+  tags {
+    Name = "${var.env}"
+  }
+}
+
+resource "aws_nat_gateway" "nat_gateway" {
+  allocation_id = "${aws_eip.nat.id}"
+  subnet_id = "${aws_subnet.public.id}"
+  
+  depends_on = ["aws_internet_gateway.igw"]
 
   tags {
     Name = "${var.env}"
@@ -58,12 +99,20 @@ resource "aws_vpn_connection" "vpn_conn" {
   }
 }
 
+/*
+Add nat gateway to routetable for private subnets
+*/
 resource "aws_route_table" "rt" {
-  vpc_id = "${aws_vpc.usg_dev.id}"
+  vpc_id           = "${aws_vpc.usg_dev.id}"
   propagating_vgws = [ "${aws_vpn_gateway.vpn_gateway.id}" ]
 
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = "${aws_nat_gateway.nat_gateway.id}"
+  }
+
   tags = {
-    Name = "${var.env}"
+    Name = "${var.env}-custom"
   }
 }
 
@@ -76,4 +125,14 @@ resource "aws_route_table_association" "rt2" {
   subnet_id      = "${aws_subnet.sn2.id}"
   route_table_id = "${aws_route_table.rt.id}"
 }
+
+/*
+Add internet gateway to main route table for vpc 
+*/
+resource "aws_route" "r" {
+  route_table_id         = "${aws_vpc.usg_dev.main_route_table_id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.igw.id}"
+}
+
 
