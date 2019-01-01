@@ -56,30 +56,33 @@ resource "aws_security_group" "usg_vpn_sg" {
   }
 }
 
+data "template_file" "user_data" {
+  template = "${file("ec2-userdata.tpl")}"
+}
+
+
 /*
-Instantiate ec2instance with remote syslog listening
-on UDP 514.
-Syslog user data as per https://access.redhat.com/solutions/54363 
+Instantiate ec2instance with
+- Update of rpms
+	- yum update
+- Set region to ap-southeast-2
+- Remote syslog listening on UDP 514.
+	- syslog user data as per https://access.redhat.com/solutions/54363 
+- Cloudwatch agent using default configuration /var/log/messages to logstream of instanceid:
+	- configuration is under /etc/awslogs/awslogs.conf	
 */
 resource "aws_instance" "syslog" {
   ami           = "${data.aws_ami.amzn_linux.id}"
   instance_type = "t2.micro"
   key_name      = "siem-kp"
   private_ip    = "172.16.0.246"
-  subnet_id      = "${aws_subnet.sn1.id}"
-  vpc_security_group_ids = [ "${aws_security_group.usg_vpn_sg.id}" ]
+  subnet_id     = "${aws_subnet.sn1.id}"
 
-  user_data = <<-EOF
-                 #!/bin/bash
-                 cat >> /etc/rsyslog.conf<<'_END'
-                 # Provides UDP syslog reception
-                 $ModLoad imudp
-                 $UDPServerRun 514
-                 _END
-                 service syslog stop
-                 service rsyslog restart
-                 EOF
-  
+  vpc_security_group_ids = [ "${aws_security_group.usg_vpn_sg.id}" ]
+  iam_instance_profile   = "${aws_iam_instance_profile.siem_instance_profile.id}"
+
+  user_data = "${data.template_file.user_data.rendered}"
+
   tags = {
     Name = "${var.env}"
   }
