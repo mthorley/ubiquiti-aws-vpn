@@ -3,7 +3,7 @@ Basic Terraform for provisioning VPN connectivity between [Ubiquiti Unifi Securi
 
 ## How It Works
 Uses Terraform to 
-* Create a VPC with a site to site VPN configuration and deploys an example syslog EC2 instance
+* Create a VPC with a site to site VPN configuration and deploys an example syslog EC2 instance with cloudwatch integration
 * Generate shell scripts to configure Unifi USG to connect to AWS
 
 Key points
