@@ -1,5 +1,5 @@
 # Ubiquiti AWS VPN 
-Basic Terraform for provisioning VPN connectivity between [Ubiquiti Unifi Security Gateway](https://www.ubnt.com/unifi-routing/unifi-security-gateway-pro-4/) and AWS site to site VPN connection. Its possible this may also work for Edge routers also running EdgeOS but this has not been tested.
+Basic Terraform for provisioning VPN connectivity between [Ubiquiti Unifi Security Gateway](https://www.ubnt.com/unifi-routing/unifi-security-gateway-pro-4/) and AWS site to site VPN connection. Its possible this may also work for Edge routers running EdgeOS but this has not been tested.
 
 ## How It Works
 Uses Terraform to 
@@ -42,6 +42,7 @@ Generate AWS API keys, create an IAM user (e.g terraform) with following AWS man
 * AmazonEC2FullAccess
 * AmazonVPCFullAccess
 * AWSMarketplaceRead-only
+* AWSIAMFullAccess
 
 ## Usage
 ```
