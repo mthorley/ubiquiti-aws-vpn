@@ -39,7 +39,7 @@ Ensure terraform.tfvars contains the following configuration:
 ### Keys
 [SSH keys to authenticate with Unifi devices](https://help.ubnt.com/hc/en-us/articles/235247068-UniFi-Adding-SSH-Keys-to-UniFi-Devices#2)
 
-Generate AWS API keys, create an IAM user (e.g terraform) with following AWS managed policies attached
+Generate AWS API keys, create an IAM user (e.g. terraform) with following AWS managed policies attached
 * AmazonEC2FullAccess
 * AmazonVPCFullAccess
 * AWSMarketplaceRead-only
@@ -55,5 +55,5 @@ and magic should happen.
 ## Future Work
 
 * [Align the generated shell scripts to Ubiquiti commands](https://help.ubnt.com/hc/en-us/articles/115016128008-EdgeRouter-IPsec-Route-Based-Site-to-Site-VPN-to-AWS-VPC-BGP-over-IKEv1-IPsec-) rather than AWS Vyatta config.
-* Put ALB infront of syslog EC2 instance to redundancy and consistent endpoint for syslog clients - except that neither NLB nor ALB support UDP ffs.
+* Put ALB infront of syslog EC2 instance for redundancy and consistent endpoint for syslog clients - except that neither NLB nor ALB support UDP ffs.
 * Replace template generation with Terraform provisioner for USG using an API.
