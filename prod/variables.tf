@@ -24,6 +24,7 @@ variable "prod_secret_key" {}
 variable "vpc_cidr" {}
 variable "sn1_cidr" {}
 variable "sn2_cidr" {}
+variable "pub_sn_cidr" {}
 
 # bgp config
 variable "aws_bgp_asn" {}

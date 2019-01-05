@@ -33,7 +33,7 @@ Public subnet to host NAT gateway
 */
 resource "aws_subnet" "public" {
   vpc_id = "${aws_vpc.usg_dev.id}"
-  cidr_block = "172.16.64.0/24"
+  cidr_block = "${var.pub_sn_cidr}"
   
   tags {
     Name = "${var.env}-public"
