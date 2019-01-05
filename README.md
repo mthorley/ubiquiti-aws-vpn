@@ -30,6 +30,7 @@ Ensure terraform.tfvars contains the following configuration:
 | vpc_cidr          | CIDR block for VPC        | 172.16.0.0/16 |
 | sn1_cidr          | CIDR block for subnet 1   | 172.16.0.0/24 |
 | sn2_cidr          | CIDR block for subnet 2   | 172.16.32.0/24 |
+| pub_sn_cidr       | CIDR block for public subnet | 172.16.64.0/24 |
 | aws_bgp_asn       | BGP ASN for AWS side      | 64513 |
 | usg_bgp_asn       | BGP ASN for USG side      | 65001 |
 | wan_ip            | Public IP of USG          | |
