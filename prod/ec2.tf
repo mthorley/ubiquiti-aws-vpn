@@ -18,6 +18,9 @@ data "aws_ami" "amzn_linux" {
   }
 }
 
+/*
+443 for privatelink cloudwatch logs
+*/
 resource "aws_security_group" "usg_vpn_sg" {
   name        = "usg-vpn-sg"
   description = "Allow ssh, icmp, syslog"
@@ -42,6 +45,13 @@ resource "aws_security_group" "usg_vpn_sg" {
     to_port     = -1
     protocol    = "icmp"
     cidr_blocks  = ["${var.usg_cidr}"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
