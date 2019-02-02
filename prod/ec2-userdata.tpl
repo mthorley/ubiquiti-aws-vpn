@@ -18,7 +18,7 @@ cat >> /etc/rsyslog.conf<<'_END'
 $ModLoad imudp
 $UDPServerRun 514
 _END
+
 service syslog stop
 service rsyslog restart
-
 
