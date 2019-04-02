@@ -135,6 +135,7 @@ resource "aws_route" "r" {
   gateway_id             = "${aws_internet_gateway.igw.id}"
 }
 
+/*
 resource "aws_vpc_endpoint" "cwlogs" {
   vpc_id            = "${aws_vpc.usg_dev.id}"
   service_name      = "com.amazonaws.ap-southeast-2.logs"
@@ -143,4 +144,5 @@ resource "aws_vpc_endpoint" "cwlogs" {
   subnet_ids        = ["${aws_subnet.sn1.id}", "${aws_subnet.sn2.id}"]
   private_dns_enabled = true
 }
+*/
 
