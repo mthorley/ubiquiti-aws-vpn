@@ -5,6 +5,7 @@ Basic [Terraform](https://www.terraform.io/) for provisioning VPN connectivity b
 Uses Terraform to 
 * Create a VPC with a site to site VPN configuration and deploys an example syslog EC2 instance with cloudwatch integration
 * Generate shell scripts to configure Unifi USG to connect to AWS
+* Create a syslog EC2 instance to capture USG and USW log events
 
 Key points
 * For simplicity, [uses BGP rather than static routes](https://medium.com/@silasthomas/aws-vpc-ipsec-site-to-site-vpn-using-a-ubiquiti-edgemax-edgerouter-with-bgp-routing-37abafb950f3)
