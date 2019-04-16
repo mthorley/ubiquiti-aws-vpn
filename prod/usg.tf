@@ -7,6 +7,8 @@ data "template_file" "usg_vpn_installer" {
     usg_admin_user             = "${var.usg_admin_user}"
     usg_ip                     = "${var.usg_ip}"
 
+    syslog_ip                  = "${var.syslog_ip}"
+
     local_address              = "${aws_customer_gateway.customer_gateway.ip_address}"
     local_bgp_asn              = "${aws_customer_gateway.customer_gateway.bgp_asn}" 
     local_network              = "${var.usg_cidr}"

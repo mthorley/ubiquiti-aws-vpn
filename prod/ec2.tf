@@ -85,7 +85,7 @@ resource "aws_instance" "syslog" {
   ami           = "${data.aws_ami.amzn_linux.id}"
   instance_type = "t2.micro"
   key_name      = "siem-kp"
-  private_ip    = "172.16.0.246"
+  private_ip    = "${var.syslog_ip}"
   subnet_id     = "${aws_subnet.sn1.id}"
 
   vpc_security_group_ids = [ "${aws_security_group.usg_vpn_sg.id}" ]

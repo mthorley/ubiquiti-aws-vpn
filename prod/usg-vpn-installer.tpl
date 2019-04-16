@@ -63,6 +63,11 @@ set protocols bgp ${local_bgp_asn} neighbor ${tunnel1_vgw_inside_address} timers
 
 set protocols bgp ${local_bgp_asn} network ${local_network} 
 
+# -------------------------------------------------------------------------------
+# 5: Configure syslog for USG
+
+set system syslog host ${syslog_ip} facility all level warning
+
 commit
 save
 exit

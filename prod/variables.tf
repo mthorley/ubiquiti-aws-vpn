@@ -38,3 +38,7 @@ variable "usg_cidr" {}
 
 # env - e.g. prodA, devA
 variable "env" {}
+
+# syslog ip
+variable "syslog_ip" {}
+
