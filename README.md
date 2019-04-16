@@ -35,6 +35,7 @@ Ensure terraform.tfvars contains the following configuration:
 | usg_bgp_asn       | BGP ASN for USG side      | 65001 |
 | wan_ip            | Public IP of USG          | |
 | usg_cidr          | CIDR block for USG network | 192.168.0.1/24 |
+| syslog_ip         | Private IP of EC2 Syslog instance | |
 
 ### Keys
 [SSH keys to authenticate with Unifi devices](https://help.ubnt.com/hc/en-us/articles/235247068-UniFi-Adding-SSH-Keys-to-UniFi-Devices#2)
