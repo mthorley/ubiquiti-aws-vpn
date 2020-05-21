@@ -46,6 +46,7 @@ Generate AWS API keys, create an IAM user (e.g. terraform) with following AWS ma
 * AmazonVPCFullAccess
 * AWSMarketplaceRead-only
 * AWSIAMFullAccess
+* AmazonRoute53ResolverFullAccess
 
 ## Usage
 ```
@@ -58,4 +59,4 @@ and magic should happen.
 
 * [Align the generated shell scripts to Ubiquiti commands](https://help.ubnt.com/hc/en-us/articles/115016128008-EdgeRouter-IPsec-Route-Based-Site-to-Site-VPN-to-AWS-VPC-BGP-over-IKEv1-IPsec-) rather than AWS Vyatta config.
 * Put ALB infront of syslog EC2 instance for redundancy and consistent endpoint for syslog clients - except that neither NLB nor ALB support UDP ffs.
-* Replace template generation with Terraform provisioner for USG using an API.
+* Replace template generation with Terraform provisioner for USG using an API - see https://github.com/paultyng/terraform-provider-unifi
